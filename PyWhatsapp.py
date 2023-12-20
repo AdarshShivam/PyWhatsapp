@@ -79,7 +79,7 @@ def input_contacts():
                 # Example use: 919899123456, Don't use: +919899123456
                 # Reference : https://faq.whatsapp.com/en/android/26000030/
                 inp = str(input(
-                    "Enter unsaved contact number with country code(interger):\n\nValid input: 91943xxxxx12\nInvalid input: +91943xxxxx12\n\n"))
+                    "Enter unsaved contact number with country code(integer):\n\nValid input: 91943xxxxx12\nInvalid input: +91943xxxxx12\n\n"))
                 # print (inp)
                 unsaved_Contacts.append(inp)
 
@@ -224,9 +224,9 @@ def send_files():
     
     time.sleep(1)
     # To send a Document(PDF, Word file, PPT)
-    # This makes sure that gifs, images can be imported through documents folder and they display
+    # This makes sure that gifs, images can be imported through documents folder and if they display
     # properly in whatsapp web.
-    if doc_filename.split('.')[1]=='pdf'or doc_filename.split('.')[1]=='docx'or doc_filename.split('.')[1]=='pptx' :
+    if doc_filename.split('.')[1]=='pdf'or doc_filename.split('.')[1]=='docx'or doc_filename.split('.')[1]=='pptx':
         try:
             docButton = browser.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[1]/div[2]/div/span/div/div/ul/li[3]/button')
             
@@ -236,7 +236,7 @@ def send_files():
             traceback.print_exc()
     else:
         try: 
-            # IMG attatchment button
+            # IMG attachment button
             docButton = browser.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[1]/div[2]/div/span/div/div/ul/li[1]/button')
             docButton.click()
         except:
@@ -300,12 +300,12 @@ def sender():
             browser.get(link)
             print("Sending message to", i)
             send_unsaved_contact_message()
-            if (choice == "yes"):
+            if choice == "yes":
                 try:
                     send_attachment()
                 except:
                     print()
-            if (docChoice == "yes"):
+            if docChoice == "yes":
                 try:
                     send_files()
                 except:
@@ -347,14 +347,14 @@ if __name__ == "__main__":
     # a particular timing choose yes
     # If no choosed instant message would be sent
     isSchedule = input('Do you want to schedule your Message(yes/no):')
-    if (isSchedule == "yes"):
+    if isSchedule == "yes":
         jobtime = input('input time in 24 hour (HH:MM) format - ')
 
     # Send Attachment Media only Images/Video
     choice = input("Would you like to send attachment(yes/no): ")
 
     docChoice = input("Would you file to send a Document file(yes/no): ")
-    if (docChoice == "yes"):
+    if docChoice == "yes":
         # Note the document file should be present in the Document Folder
         doc_filename = input("Enter the Document file name you want to send: ")
 
@@ -373,7 +373,7 @@ if __name__ == "__main__":
 
     # Messages are scheduled to send
     # Default schedule to send attachment and greet the personal
-    # For GoodMorning, GoodNight and howareyou wishes
+    # For GoodMorning, GoodNight and how are you wishes
     # Comment in case you don't want to send wishes or schedule
     scheduler()
     # browser.quit()
